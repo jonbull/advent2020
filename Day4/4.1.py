@@ -43,14 +43,8 @@ Otherwise increment our valid list.
 for record in collection:
     isGood = True
     for rule in requiredFields:
-        isFound = False
-        for entry in record:
-            if entry == rule:
-                isFound = True
-                break
-        if not(isFound):
+        if rule not in record:
             isGood = False
-            break
     if isGood: targetValue += 1
 
 print(f'#Valid Records: {targetValue}')
