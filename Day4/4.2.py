@@ -80,11 +80,7 @@ for record in collection:
     fieldsinrecord = record.keys()
     isGood = True
     for field in requiredFields:
-        isFound = False
-        for entry in fieldsinrecord:
-            if entry == field:
-                isFound = True
-        if not isFound:
+        if field not in fieldsinrecord:
             isGood = False
 
 
