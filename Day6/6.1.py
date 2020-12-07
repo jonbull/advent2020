@@ -6,24 +6,18 @@ theFile = 'part1.txt'
 
 records = []
 answers = set()
-sourcefile = open(theFile).readlines()
 
-for record in sourcefile:
-    if record != "\n":
-        for letter in record:
-            if letter != '\n':
-                answers.add(letter)
+for templine in open(theFile).readlines():
+    record = templine.rstrip()
+    if len(record) > 0:
+        for letter in record: answers.add(letter)
     else:
-        records.append(answers.copy())
+        targetValue += len(answers)
         answers.clear()
-
-records.append(answers.copy())
-
-for line in records:
-    targetValue += len(line)
+targetValue += len(answers)
 
 print(f'#Total Unique Trues: {targetValue}')
 print(f'#Time to complete: {datetime.datetime.now() - timestart}')
 
 #Total Unique Trues: 7120
-#Time to complete: 0:00:00.004984
+#Time to complete: 0:00:00.003989
