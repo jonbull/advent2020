@@ -1,37 +1,22 @@
+import time
+start = time.perf_counter()
 
 if __name__ == '__main__':
-    debug = 1
-    if debug > 0:
-        file = 'TestInput.txt.'
-        file = 'Input.txt'
-    else:
-        file = 'Input.txt'
 
+    file = 'Input.txt'
     inputlist = []
     filecontents = open(file)
     depthcnt = 0
 
-#Not ten minutes in, and the IDE has saved my bacon :)
-
     for row in filecontents:
-            inputlist.append(row.rstrip())
+            inputlist.append(int(row.rstrip()))
 
-    idx = 0
-    for row in inputlist:
-        if idx != 0:
-            if debug > 0:
-                print (str(row),end='')
-            if inputlist[idx-1] < inputlist[idx]:
+    for row in range(len(inputlist)):
+        if row != 0:
+            if inputlist[row-1] < inputlist[row]:
                 depthcnt += 1
-                if debug > 0:
-                    print(' (increased) depthcnt now '+str(depthcnt))
-            else:
-                if debug > 0:
-                    print(' (decreased)')
-        else:
-            if debug > 0:
-                print (str(row)+' (N/A - no previous measurement)')
-        idx += 1
-###Off by 1, but how?  to ve investigated later
-print ('How many measurements are larger than the previous measurement? '+str(depthcnt))
 
+print ('#How many measurements are larger than the previous measurement? '+str(depthcnt))
+print ('#Time:'+str((time.perf_counter() - start)))
+#How many measurements are larger than the previous measurement? 1548
+#Time:0.0019495
